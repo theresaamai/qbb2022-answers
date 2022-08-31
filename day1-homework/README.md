@@ -24,13 +24,13 @@ bedfile=~/data/bed_files/chromHMM.E116_15_coreMarks_hg38lift_stateno.chr21.bed
 awk '{if ($4 == 1) {print}}' $bedfile > st1.bed
 bedtools intersect -a $genefile -b st1.bed > intersect.bed
 awk '{if ($4 == "C") {print $5}}' intersect.bed | sort | uniq -c
-ooutput:  5 A
+output:  5 A
    7 G
   15 T
 This shows us that the most common alternate allele is Thymine which makes sense because C -> T is very common. 
 
-3. awk '/^#/{next} {print $1,$2-1, $2}' $1 > variants.bed #ignores the headers, and prints out all the columns and makes it as a new variable which will now be stored in variants.bed
-sort -k1,1 -k2,2n ~/data/bed_files/genes.bed > genes.sorted.bed - this sorts the gene file by column and stores it into the new sorted file named genes.sorted.bed
+3. awk '/^#/{next} {print $1,$2-1, $2}' $1 > variants.bed #ignores the headers, and prints out columns 1, tells us the size of the chromosome based on the positions stated from $2-1 and makes it as a new variable which will now be stored in variants.bed
+sort -k1,1 -k2,2n ~/data/bed_files/genes.bed > genes.sorted.bed  #this sorts the gene file by column and stores it into the new sorted file named genes.sorted.bed
 bedtools closest -a variants.bed -b genes.sorted.bed - this tells us the closest gene for each variant 
 Error #1 = we need to make sure the file is TAB delimited - to fix this error, we need to add the command "\t"
 Error #2: Sorted input specified, but the file variants.bed has the following out of order record - to fix this error we need to sort the variants.bed file, so we will pipe sort to the awk command. 
