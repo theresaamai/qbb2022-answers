@@ -105,9 +105,9 @@ def parse_vcf(fname): #defining a function called parse_vcf, this takes an argum
             except: #if anything in the try block fails, then:
                 malformed += 1 #increment the "malformed" variable by 1 
             #these next three lines are modifying the first line of the vcf list to match information from the header 
-    vcf[0][7] = info_description #
-    if len(vcf[0]) > 8:
-        vcf[0][8] = format_description
+    vcf[0][7] = info_description #the header lines will be stored 
+    if len(vcf[0]) > 8: #if there are multiple things in the header line
+        vcf[0][8] = format_description #they will be stored in format description 
     #if there were any malformed lines, we're going to print out the number of lines so the user knows 
     if malformed > 0:
         print(f"There were {malformed} malformed entries", file=sys.stderr)
