@@ -36,3 +36,14 @@ code: cut -f 4 chromHMM.E116_15_coreMarks_hg38lift_stateno.chr21.bed | sort -n |
  4c. You can repeat the code and individually search each population 
  5a. cp ~/data/vcf_files/random_snippet.vcf .
  5b. cut -f 1-9,13 random_snippet.vcf > HG00100.vcf
+ 5c. cut -f 10 HG00100.vcf > f10.txt #to cut out column for sample HG00100 and save as new file
+sort -n f10.txt | uniq -c #sort and count number of each genotype
+9514 0|0
+ 127 0|1
+ 178 1|0
+ 181 1|1
+ 5d. cut -f 8 HG00100.vcf > f8.txt
+sed '/^#/d' f8.txt | grep AF=1 | wc -l #delete header rows find number of times AF=1 and count
+34 rows contain AF =1
+5e. AF=1 can appear 6 times per row (it can appear in field 4-9 of the INFO field as AF=1, EAS_AF=1, EUR_AF=1, AFR_AF=1, AMR_AF=1, SAS_AF=1)
+5f. I would cut the info column out, which contains the AFR values. I would then make a list of these values that are now going to be seperated by spaces and not commas. Then I would grep for the AFR_AF Column and uniq-c this so that now I can see how many AFR values there are, and how many times they repeat. 
