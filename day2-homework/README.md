@@ -113,14 +113,6 @@ def parse_vcf(fname): #defining a function called parse_vcf, this takes an argum
         print(f"There were {malformed} malformed entries", file=sys.stderr)
         #at the very end of running the function, return the vcf list. give me the data back. 
     return vcf
-2. Goal: In random snippet, the ID column is all ., so we need to fill in all the . with info from dbSNP
-import vcfParser #import the package 
-
-vcf_snp = [] #to create a dictionary 
-key = (chrom, pos, ref) #to use the info inside of db_SNP file _
-chrom = fields[0]
-pos = fields[1]
-ref = fields [2]
-ID = fields [3]
+2. There are 100 unlabeled records 
 
 
