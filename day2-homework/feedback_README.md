@@ -1,3 +1,3 @@
 Exercise 1: Really really good job annotating that `parse_vcf()` function. This is really detailed and it makes it clear to me that you understand what's going on in the function (at least in the non-header portion ;) )
 
-Don't forget to submit your work for exercise 2!
+Exercise 2: This looks good. It looks like you are confident enough using dictionaries in your own code. My only comment is that if you where going to do anything downstream with this vcf data, your current code doesn't replace the ID value of the record with the one you found from the dbSNP file. Consider how you would go about doing that. But all in all, great job!
