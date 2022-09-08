@@ -17,3 +17,6 @@ cat aau1043_parental_age.csv | tr ',' ' ' > commaremoved_parental_age #i am now 
 sort commaremoved_parental_age >sorted_parentalage_ #now i need to sort the files so that the proband IDs match so that i can join them together 
 
 join father_mother_joined sorted_parentalage > joined_final #now i am FINALLY joining the age and de novo mutation files together 
+
+Exercise 2.
+Yes, this relationship is significant because the p-value is low. 
