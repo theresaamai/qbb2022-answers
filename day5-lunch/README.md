@@ -19,4 +19,12 @@ sort commaremoved_parental_age >sorted_parentalage_ #now i need to sort the file
 join father_mother_joined sorted_parentalage > joined_final #now i am FINALLY joining the age and de novo mutation files together 
 
 Exercise 2.
-Yes, this relationship is significant because the p-value is low. 
+Yes, the relationship between maternal age and maternal mutations is significant because the p-value is low. 
+The relationship tells us that for every 0.3 years in maternal age, the maternal inheritance of de novo mutations increase. 
+
+Yes, the relationship between paternal age and paternal mutations is significant because the p-value is low. 
+The relationship tells us that for every 1.35 years, the paternal inheritance of de novo mutations increase. 
+
+Yes the number of maternal inherited de novo mutations is signficantly different than the number of paternally inherited de novo mutations. 
+
+We predict there will be 78.5 mutations. 
