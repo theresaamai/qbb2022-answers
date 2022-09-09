@@ -8,9 +8,9 @@ eigenvector = np.genfromtxt("/Users/cmdb/qbb2022-answers/day3-homework/joined_fi
 genders = np.unique(eigenvector["gender"])
 pops = np.unique(eigenvector["pop"])
 sup_pops = np.unique(eigenvector["super_pop"])
-fig, ax = plt.subplots()
-xg = []
-yg = []
+# fig, ax = plt.subplots()
+# xg = []
+# yg = []
 #create a figure and axes
 #fig, ax = plt.subplots(nrows = 5)
 # ax[0].set_ylabel("PC2")
@@ -22,29 +22,29 @@ yg = []
 # fig.tight_layout()
 # plt.savefig("ex2_a_and_b.png")
 
-for i, sex in enumerate(genders):
-    row1 = np.where(eigenvector["gender"] == sex)
-    xg.append(eigenvector["PC1"][row1])
-    yg.append(eigenvector["PC2"][row1])
-    ax.scatter(xg[i],yg[i], label = sex)
-ax.set_xlabel("PC1")
-ax.set_ylabel("PC2")
-ax.legend()
-plt.savefig("ex3_a.png")
-plt.close(fig)
-xp = []
-yp = []
-fig, ax = plt.subplots()
-for i, population in enumerate(pops):
-    row1 = np.where(eigenvector["pop"] == population)
-    xp.append(eigenvector["PC1"][row1])
-    yp.append(eigenvector["PC2"][row1])
-    ax.scatter(xp[i], yp[i], label = population)
-ax.set_xlabel("PC1")
-ax.set_ylabel("PC2")
-ax.legend(loc = 'center right')
-plt.savefig("ex3_b.png")
-plt.close(fig)
+# for i, sex in enumerate(genders):
+#     row1 = np.where(eigenvector["gender"] == sex)
+#     xg.append(eigenvector["PC1"][row1])
+#     yg.append(eigenvector["PC2"][row1])
+#     ax.scatter(xg[i],yg[i], label = sex)
+# ax.set_xlabel("PC1")
+# ax.set_ylabel("PC2")
+# ax.legend()
+# plt.savefig("ex3_a.png")
+# plt.close(fig)
+# xp = []
+# yp = []
+# fig, ax = plt.subplots()
+# for i, population in enumerate(pops):
+#     row1 = np.where(eigenvector["pop"] == population)
+#     xp.append(eigenvector["PC1"][row1])
+#     yp.append(eigenvector["PC2"][row1])
+#     ax.scatter(xp[i], yp[i], label = population)
+# ax.set_xlabel("PC1")
+# ax.set_ylabel("PC2")
+# ax.legend(loc = 'center right')
+# plt.savefig("ex3_b.png")
+# plt.close(fig)
 xs = []
 ys = []
 fig, ax = plt.subplots()
@@ -56,5 +56,6 @@ for i, super_pop in enumerate(sup_pops):
 ax.set_xlabel("PC1")
 ax.set_ylabel("PC2")
 ax.legend(loc = 'center right')
-plt.savefig("ex3_c.png")
-plt.close(fig)
+# plt.savefig("ex3_c.png")
+# plt.close(fig)
+plt.show()
