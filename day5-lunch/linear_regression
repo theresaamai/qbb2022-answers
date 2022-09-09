@@ -10,52 +10,52 @@ df = np.genfromtxt("/Users/cmdb/qbb2022-answers/day5-lunch/joined_final", delimi
 
 #print(df ["probandID"])
 
-# fig, ax = plt.subplots()
-# ax.scatter(df["mother_age"], df["mother_mut"])
-# ax.set_xlabel("maternal age")
-# ax.set_ylabel("count of maternal de novo mutations")
-# plt.title("Maternal Mutations")
-# plt.show()
-# # plt.savefig("ex2_a.png")
+fig, ax = plt.subplots()
+ax.scatter(df["mother_age"], df["mother_mut"])
+ax.set_xlabel("maternal age")
+ax.set_ylabel("count of maternal de novo mutations")
+plt.title("Maternal Mutations")
+#plt.show()
+plt.savefig("ex2_a.png")
 
-# fig, ax = plt.subplots()
-# ax.scatter(df["father_age"], df["father_mut"])
-# ax.set_xlabel("paternal age")
-# ax.set_ylabel("count of paternal de novo mutations")
-# plt.title("Paternal Mutations")
+fig, ax = plt.subplots()
+ax.scatter(df["father_age"], df["father_mut"])
+ax.set_xlabel("paternal age")
+ax.set_ylabel("count of paternal de novo mutations")
+plt.title("Paternal Mutations")
 # plt.show()
-# plt.savefig("ex2_b.png")
+plt.savefig("ex2_b.png")
 
 #is there an association between maternal age and maternally inherited mutations?
-# model = smf.ols(formula = "mother_mut ~ 1 + mother_age", data = df)
-# results = model.fit()
-# results.summary()
-# print(results.summary())
+model = smf.ols(formula = "mother_mut ~ 1 + mother_age", data = df)
+results = model.fit()
+results.summary()
+print(results.summary())
 
 #is there an association between paternal age and paternally inherited mutations?
-# model = smf.ols(formula = "father_mut ~ 1 + father_age", data = df)
-# results = model.fit()
-# results.summary()
-# print(results.summary())
+model = smf.ols(formula = "father_mut ~ 1 + father_age", data = df)
+results = model.fit()
+results.summary()
+print(results.summary())
 
 #Plot a histogram of the number of maternal de novo mutations and paternal de novo mutations per proband on a single plot with semi-transparency
 
-# fig, ax = plt.subplots()
-# ax.hist(df["mother_mut"], alpha = 0.5, label = "mother mutations")
-# ax.hist(df["father_mut"], alpha = 0.5, label = "father mutations")
-# ax.set_xlabel("mutation")
-# ax.set_ylabel("frequency")
-# ax.set_title("maternal and paternal de novo mutations")
-# plt.savefig("ex2_c.png")
+fig, ax = plt.subplots()
+ax.hist(df["mother_mut"], alpha = 0.5, label = "mother mutations")
+ax.hist(df["father_mut"], alpha = 0.5, label = "father mutations")
+ax.set_xlabel("mutation")
+ax.set_ylabel("frequency")
+ax.set_title("maternal and paternal de novo mutations")
+plt.savefig("ex2_c.png")
 # plt.show()
 
 #Test whether the number of maternally inherited de novo mutations per proband is significantly different than the number of paternally inherited de novo mutations per proband
-# model = smf.ols(formula = "mother_mut ~ 1 + father_mut", data = df)
-# results = model.fit()
-# results.summary()
-# print(results.summary())
+model = smf.ols(formula = "mother_mut ~ 1 + father_mut", data = df)
+results = model.fit()
+results.summary()
+print(results.summary())
 
-#Predict the number of paternal de novo mutations for a proband with a father who was 50.5 years old at the proband's time of birth. 
+#Predict the number of paternal de novo mutations for a proband with a father who was 50.5 years old at the proband's time of birth.
 
 model = smf.ols(formula = "father_mut ~ 1 + father_age", data = df)
 new_data = df[0]
