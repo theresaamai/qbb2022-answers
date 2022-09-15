@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+
+import numpy as np
+from scipy.stats import poisson 
+import matplotlib.pyplot as plt
+
+genome = np.zeros(1000000)
+
+for i in range(50000):
+    randgene = np.random.randint(0, 999900)
+    for j in range(randgene, randgene + 100):
+        genome[j] += 1 
+# plt.hist(genome)
+# plt.show()
+
+#to create a histogram with a Poisson distribution of 5
+k = np.arange(0, 20, 1)
+pmf = poisson.pmf(k, 5, 0)*1000000
+fig, ax = plt.subplots()
+ax.plot(k, pmf)
+ax.hist(genome)
+plt.savefig("histogram1")
+plt.show()
+
+# #how much of the genome has not been sequenced (has 0x coverage)?
+counter = 0
+for i in genome:
+    if i == 0:
+        counter += 1
+print(counter)
+    
+#repeat analysis with 15x coverage
+x = np.arange(0, 40, 1)
+y = poisson.pmf(x, 15, 0)*1000000
+fig, ax = plt.subplots()
+ax.plot(x, y)
+ax.hist(genome)
+plt.savefig("histogram2")
+plt.show()
+
+#how much of geneome has not been sequenced (0x coverage)?
+counter = 0
+for i in genome:
+    if i == 0:
+        counter += 1
+print(counter)
+
+
+
