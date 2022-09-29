@@ -1,0 +1,115 @@
+#!/usr/bin/env python3
+
+import matplotlib.pyplot as plt
+import vcfParser
+
+parsed = vcfParser.parse_vcf("var.vcf")
+
+aflist = []
+depthlist = []
+annotationlist = []
+itemlist = []
+countlist = []
+qualitylist = []
+
+#make a nested for loop to look through allele freqency, then look at read depth for each indivudual sample
+for line in parsed:
+    info = line[7]
+    if line[0] == "CHROM":
+        continue
+    allele = float(info["AF"])
+    aflist.append(allele)
+    for i in range(9,19):
+        column = line[i]
+        dp = column[2]
+        if dp == ".":
+            continue
+        depthlist.append(int(dp))
+        
+#for loop to look at genotype quality for each individual sample 
+for line in parsed:
+    j = line[8]
+    qual = ["GQ"]
+    for x in range(9,19):
+        secondcol = line[x]
+        gc = secondcol[1]
+        if gc == ".":
+            continue
+    qualitylist.append(gc)
+
+#for loop to look at predicted effect
+for line in parsed:
+    info = line[7]
+    if line[0] == "CHROM":
+        continue
+    annotation = info["ANN"]
+    annlist = annotation.split("|")
+    effect = annlist[1]
+    annotationlist.append(effect)
+
+list_set = list(set(annotationlist))
+
+for item in list_set:
+    unique = annotationlist.count(item)
+    countlist.append(unique)
+    
+    
+#plot read depth
+fig, ax = plt.subplots()
+ax.hist(depthlist, alpha = 0.5, label = "read depth")
+plt.yscale('log')
+ax.set_xlabel("read depth")
+ax.set_ylabel("frequency")
+ax.set_title("readdepth")
+plt.savefig("plot1")
+# plt.show()
+
+#plot genotype quality distribution
+fig, ax = plt.subplots()
+ax.hist(qualitylist, alpha = 0.5, label = "quality distribution")
+ax.set_xlabel("genotype")
+ax.set_ylabel("quality")
+ax.set_title("quality distribution")
+plt.xticks(rotation=90)
+plt.savefig("plot2")
+# plt.show()
+
+#plot allele frequency
+fig, ax = plt.subplots()
+ax.hist(aflist, alpha = 0.5, label = "allele frequency")
+ax.set_xlabel("allele frequency")
+ax.set_ylabel("SNP")
+ax.set_title("allele frequency")
+plt.savefig("plot3")
+# plt.show()
+
+#plot predicted effect
+fig, ax = plt.subplots()
+plt.bar(list_set, countlist)
+ax.set_xlabel("annotation")
+ax.set_ylabel("effect")
+ax.set_title("predicted effect of variant")
+plt.xticks(rotation=90)
+plt.savefig("plot4")
+# plt.show()
+
+
+#plot all plots together
+fig, axes = plt.subplots(ncols=2, nrows=2)
+
+# read depth plot
+axes[0,0].hist(depthlist)
+axes[0,0].set_yscale("log")
+
+# genotype quality plot
+axes[0,1].hist(qualitylist)
+
+# AFS
+axes[1,0].hist(aflist)
+
+# predicted variant effects
+axes[1,1].bar(list_set, countlist)
+
+fig.savefig("plots.png")
+
+
