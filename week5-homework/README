@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#Part One 
+#step 1
+samtools view -b -q 10 D2_Sox2_R1.bam > filtered1.bam
+samtools view -b -q 10 D2_Sox2_R2.bam > filtered2.bam
+samtools view -b -q 10 D2_Sox2_R1_input.bam > control1.bam
+samtools view -b -q 10 D2_Sox2_R2_input.bam > control2.bam
+
+#step 2
+macs2 callpeak -t filtered1.bam -c control1.bam -f BAM -g 94987271 -B --outdir results
+macs2 callpeak -t filtered2.bam -c control2.bam -f BAM -g 94987271 -B --outdir results2
+
+#step 3
+bedtools intersect -a ~/qbb2022-answers/week5-homework/results/NA_peaks.narrowPeak -b ~/qbb2022-answers/week5-homework/results2/NA_peaks.narrowPeak > combined.bed
+
+#step 4
+bedtools intersect -a D2_Klf4_peaks.bed -b combined.bed | wc -l
+# number of overlaps = 40
+# total number of peaks = 60
+
+#Part Two 
+#step 1
+sort -k 5 -nr combined.bed >sorted.bed 
+#step 2
+head -300 sorted.bed > head.bed 
+wc -l head.bed #to make sure i got 300 lines 
+#step 3
+awk '{ printf "%s:%i-%i\n", $1, $2, $3 }' head.bed > awk.bed
+#step 4
+samtools faidx mm10.fa -r awk.bed >samawk.fa
+#step 5
+meme-chip -maxw 7 samawk.fa 
+
+#Part Three 
+#step 1 
+tar xvf motif_databases.12.23.tar
+#step 2 
+tomtom combined.meme motif_databases/MOUSE/HOCOMOCOv11_full_MOUSE_mono_meme_format.meme
+#step 3
+open tomtom.html
+#step 4 
+grep KLF4 tomtom.tsv > klf4.tsv
+grep SOX2 tomtom.tsv > sox2.tsv 
+
+
+
