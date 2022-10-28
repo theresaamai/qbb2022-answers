@@ -18,7 +18,7 @@ start_bin = frags['bin'][numpy.where((frags['chr'] == chrom) &
 end_bin = frags['bin'][numpy.where((frags['chr'] == chrom) &
                                    (frags['start'] <= end) &
                                    (frags['end'] > end))[0][0]] + 1
-print(start_bin, end_bin)
+
 def filtered_data(data1):
     col1 = data1["F1"]
     col2 = data1["F2"]
@@ -57,5 +57,8 @@ plt.subplots_adjust(left=0.15,
                 hspace=0.0)
 ax[0].imshow(mat, cmap = "magma")
 ax[1].plot(ntlist, insulationlist)
-plt.savefig("heatmap2.png")
+ax[1].set_xlabel("Region")
+ax[1].set_ylabel("Insulator Score")
+plt.tight_layout()
+fig.savefig("Insulator.png")
 plt.show()
