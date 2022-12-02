@@ -53,6 +53,7 @@ plt.tight_layout()
 plt.savefig("dendrogram.png")
 plt.close()
 
+
 pvalues_list = []
 betavalues_list = []
 for row in range(log_array.shape[0]):
@@ -78,8 +79,8 @@ for row in range(log_array.shape[0]):
 fig, ax = plt.subplots()
 sm.qqplot(np.array(pvalues_list), dist = stats.uniform, line='45')
 plt.tight_layout()
-plt.show()
 plt.savefig("qqplot.png")
+plt.show()
 
 fdr_list = multitest.multipletests(pvalues_list, alpha = 0.1, method = "fdr_bh")
 pvalues_list = fdr_list[0]
