@@ -48,4 +48,5 @@ for genoi, idx in zip(genesoi, genesoilocs):
 ax.spines.right.set_visible(False)
 ax.spines.top.set_visible(False)
 plt.tight_layout()
+plt.savefig("plot.png")
 plt.show()
