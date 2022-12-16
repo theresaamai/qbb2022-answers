@@ -79,5 +79,4 @@ print(second_num_gens)
 fig, ax = plt.subplots()
 ax.boxplot(second_num_gens, labels = allele_freq)
 plt.xlabel("allele frequencies")
-#log scale the x axis
 plt.savefig("boxplot_allele_freq.png")
