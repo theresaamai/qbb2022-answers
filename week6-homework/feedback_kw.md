@@ -1,6 +1,6 @@
 ## Week 6 -- 10 points possible
 
-1 + 1 + _ + _ + _ + _ + _ + 1 + 1 + 1 + 1 + 1 + 1 = 8 of 10 points possible
+1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 = 13 of 10 points possible
 
 1. Given data question: What percentage of reads are valid interactions?
 
@@ -49,4 +49,4 @@ Possible Bonus points:
 
 3. Turned in the plot of the heatmap + insulation scores below (0.5 pts each panel)
 
-**Please add your plotcode.py for full credit**
+**Please add your plotcode.py for full credit** -- *Regrade, this was added*
